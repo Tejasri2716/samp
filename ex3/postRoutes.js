@@ -1,12 +1,15 @@
  // routes/postRoutes.js
- const express = require('express');
- const Post = require('../models/Post');
- const router = express.Router();
-
- router.post('/', async (req, res) => {
-     const post = new Post(req.body);
-     await post.save();
-     res.send(post);
- });
-
- module.exports = router;
+router.post('/:id/like', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        if (!post) {
+            return res.status(404).send('Post not found');
+        }
+        post.likes += 1;
+        await post.save();
+        res.send(post);
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+});
+module.exports = router;
