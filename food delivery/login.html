@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Food Delivery</title>
     <link rel="stylesheet" href="food.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        main {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -16,12 +45,12 @@
             <label for="name">Name:</label>
             <input type="text" id="name" required>
 
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
 
             <button type="submit">Login</button>
         </form>
-       </main>
+    </main>
 
     <footer>
         <p>&copy; 2024 Food Delivery Website</p>
@@ -31,10 +60,10 @@
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
 
             // Save user info in local storage
-            localStorage.setItem('user', JSON.stringify({ name, phone }));
+            localStorage.setItem('user', JSON.stringify({ name, password }));
             // Redirect to the main page
             window.location.href = 'food.html';
         });
