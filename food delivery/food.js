@@ -1,8 +1,8 @@
 const restaurantMenus = {
     restaurant1: [
-        { id: 1, name: "Plain dosa", price: 10, img: "images/plaindosa.jpg" },
-        { id: 2, name: "Egg dosa", price: 15, img: "images/eggdosa.jpg" },
-        { id: 3, name: "Masala dosa", price: 10, img: "images/masaladosa.jpg" },
+        { id: 1, name: "Plain dosa", price: 10, img: "images/plain dosa.jpg" },
+        { id: 2, name: "Egg dosa", price: 15, img: "images/egg dosa.jpg" },
+        { id: 3, name: "Masala dosa", price: 10, img: "images/masala dosa.jpg" },
         { id: 4, name: "Uthappam", price: 10, img: "images/uthappam.jpg" },
         { id: 5, name: "Rava dosa", price: 10, img: "images/ravadosa.jpg" },
     ],
