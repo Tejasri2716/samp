@@ -1,19 +1,19 @@
 const restaurantMenus = {
     restaurant1: [ // Vegetarian
-        { id: 1, name: "Plain Dosa", price: 10, img:"images/plain dosa.jpg" },
-        { id: 2, name: "Idly", price: 15, img: "images/idly.jpg" },
-        { id: 3, name: "Masala Dosa", price: 10, img: "images/masala dosa.jpg" },
-        { id: 4, name: "Chola Poori", price: 10, img: "images/chola poori.jpg" },
+        { id: 1, name: "Plain Dosa", price: 10, img:"image/plain dosa.jpg" },
+        { id: 2, name: "Idly", price: 15, img: "image/idly.jpg" },
+        { id: 3, name: "Masala Dosa", price: 10, img: "image/masala dosa.jpg" },
+        { id: 4, name: "Chola Poori", price: 10, img: "image/chola poori.jpg" },
     ],
     restaurant2: [ // Non-Vegetarian
-        { id: 6, name: "Chicken Biryani", price: 20, img: "images/chicken biryani.jpg" },
-        { id: 7, name: "Mutton Curry", price: 25, img: "images/mutton curry.jpg" },
-        { id: 8, name: "Fish Fry", price: 15, img: "images/fish fry.jpg" },
+        { id: 6, name: "Chicken Biryani", price: 20, img: "image/chicken biryani.jpg" },
+        { id: 7, name: "Mutton Curry", price: 25, img: "image/mutton curry.jpg" },
+        { id: 8, name: "Fish Fry", price: 15, img: "image/fish fry.jpg" },
     ],
     restaurant3: [ // Desserts
-        { id: 9, name: "Chocolate Cake", price: 12, img: "images/chocolate cake.jpg" },
-        { id: 10, name: "Ice Cream Sundae", price: 8, img: "images/ice cream.jpg" },
-        { id: 11, name: "Gulab Jamun", price: 10, img: "images/gulab jamun.jpg" },
+        { id: 9, name: "Chocolate Cake", price: 12, img: "image/chocolate cake.jpg" },
+        { id: 10, name: "Ice Cream Sundae", price: 8, img: "image/ice cream.jpg" },
+        { id: 11, name: "Gulab Jamun", price: 10, img: "image/gulab jamun.jpg" },
     ],
 };
 
