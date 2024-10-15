@@ -1,19 +1,19 @@
 const restaurantMenus = {
-    restaurant1: [
-        { id: 1, name: "Plain dosa", price: 10, img: "images/plaindosa.jpg" },
-        { id: 2, name: "Egg dosa", price: 15, img: "images/eggdosa.jpg" },
-        { id: 3, name:"Masala dosa", price:10 , img:"images/masaladosa.jpg"},
-        { id: 4, name:"uthappam", price:10 , img:"images/uthappam.jpg"},
-        { id: 5, name:"Rava dosa", price:10 , img:"images/ravadosa.jpg"},
+    restaurant1: [ // Vegetarian
+        { id: 1, name: "Plain Dosa", price: 10, img:"images/plain dosa.jpg" },
+        { id: 2, name: "Idly", price: 15, img: "images/idly.jpg" },
+        { id: 3, name: "Masala Dosa", price: 10, img: "images/masala dosa.jpg" },
+        { id: 4, name: "Chola Poori", price: 10, img: "images/chola poori.jpg" },
     ],
-    restaurant2: [
-        { id: 6, name: "Idly", price: 20, img: "images/idly.jpg" },
-        { id: 7, name: "Podi idly", price: 12, img: "images/podiidly.jpg" },
-        { id: 8, name:"sambar idly", price:10 , img:"images/sambaridly.jpg"},
+    restaurant2: [ // Non-Vegetarian
+        { id: 6, name: "Chicken Biryani", price: 20, img: "images/chicken biryani.jpg" },
+        { id: 7, name: "Mutton Curry", price: 25, img: "images/mutton curry.jpg" },
+        { id: 8, name: "Fish Fry", price: 15, img: "images/fish fry.jpg" },
     ],
-    restaurant3: [
-        { id: 9, name: "Veg meal", price: 12, img: "images/vegmeal.jpg" },
-        { id: 10, name: "Nonveg Meal", price: 8, img: "images/nonvegmeal.jpg" },
+    restaurant3: [ // Desserts
+        { id: 9, name: "Chocolate Cake", price: 12, img: "images/chocolate cake.jpg" },
+        { id: 10, name: "Ice Cream Sundae", price: 8, img: "images/ice cream.jpg" },
+        { id: 11, name: "Gulab Jamun", price: 10, img: "images/gulab jamun.jpg" },
     ],
 };
 
@@ -46,51 +46,20 @@ function initUser() {
     if (user) {
         userInfoDiv.innerHTML = `Welcome, ${user.name} (${user.phone})`;
         enableAddToCartButtons();
-        displayMenu(document.getElementById('restaurant-select').value); // Load default restaurant
+        const selectedRestaurant = document.getElementById('restaurant-select').value;
+        displayMenu(selectedRestaurant); // Load default restaurant menu
     } else {
         window.location.href = 'login.html';
     }
 }
 
-// Function to enable "Add to Cart" buttons
-function enableAddToCartButtons() {
-    const buttons = document.querySelectorAll('button[id^="add-to-cart-"]');
-    buttons.forEach(button => {
-        button.disabled = false;
-    });
-}
+// Call initUser when the page loads
+document.addEventListener('DOMContentLoaded', initUser);
 
-// Order array
-let order = [];
-
-// Function to add item to order
-function addToOrder(id) {
-    const restaurant = document.getElementById('restaurant-select').value;
-    const item = restaurantMenus[restaurant].find(item => item.id === id);
-    order.push(item);
-    updateOrderSummary();
-}
-
-// Function to update order summary
-function updateOrderSummary() {
-    const orderContainer = document.getElementById('order-summary');
-    orderContainer.innerHTML = ''; // Clear current order
-    let total = 0;
-
-    order.forEach(item => {
-        const div = document.createElement('div');
-        div.innerHTML = `${item.name} - $${item.price}`;
-        orderContainer.appendChild(div);
-        total += item.price;
-    });
-
-    const totalDiv = document.createElement('div');
-    totalDiv.innerHTML = `<strong>Total: $${total}</strong>`;
-    orderContainer.appendChild(totalDiv);
-
-    // Enable the place order button if there are items in the order
-    document.getElementById('place-order').disabled = order.length === 0;
-}
+// Event listener for restaurant selection change
+document.getElementById('restaurant-select').addEventListener('change', function() {
+    displayMenu(this.value);
+});
 
 // Function to handle order placement
 document.getElementById('place-order').onclick = function() {
