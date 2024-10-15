@@ -1,19 +1,19 @@
 const restaurantMenus = {
     restaurant1: [
-        { id: 1, name: "Plain dosa", price: 10, img: "images/plain dosa.jpg" },
-        { id: 2, name: "Egg dosa", price: 15, img: "images/egg dosa.jpg" },
-        { id: 3, name: "Masala dosa", price: 10, img: "images/masala dosa.jpg" },
-        { id: 4, name: "Uthappam", price: 10, img: "images/uthappam.jpg" },
-        { id: 5, name: "Rava dosa", price: 10, img: "images/ravadosa.jpg" },
+        { id: 1, name: "Plain dosa", price: 10, img: "images/plain dosa.jpeg" },
+        { id: 2, name: "Egg dosa", price: 15, img: "images/egg dosa.jpeg" },
+        { id: 3, name: "Masala dosa", price: 10, img: "images/masala dosa.jpeg" },
+        { id: 4, name: "Uthappam", price: 10, img: "images/uthappam.jpeg" },
+        { id: 5, name: "Rava dosa", price: 10, img: "images/ravadosa.jpeg" },
     ],
     restaurant2: [
-        { id: 6, name: "Idly", price: 20, img: "images/idly.jpg" },
-        { id: 7, name: "Podi idly", price: 12, img: "images/podiidly.jpg" },
-        { id: 8, name: "Sambar idly", price: 10, img: "images/sambaridly.jpg" },
+        { id: 6, name: "Idly", price: 20, img: "images/idly.jpeg" },
+        { id: 7, name: "Podi idly", price: 12, img: "images/podiidly.jpeg" },
+        { id: 8, name: "Sambar idly", price: 10, img: "images/sambaridly.jpeg" },
     ],
     restaurant3: [
-        { id: 9, name: "Veg meal", price: 12, img: "images/vegmeal.jpg" },
-        { id: 10, name: "Nonveg Meal", price: 8, img: "images/nonvegmeal.jpg" },
+        { id: 9, name: "Veg meal", price: 12, img: "images/vegmeal.jpeg" },
+        { id: 10, name: "Nonveg Meal", price: 8, img: "images/nonvegmeal.jpeg" },
     ],
 };
 
