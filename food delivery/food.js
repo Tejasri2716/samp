@@ -1,6 +1,6 @@
 const restaurantMenus = {
     restaurant1: [ // Vegetarian
-        { id: 1, name: "Plain Dosa", price: 10, img:"image/plain dosa.jpg" },
+        { id: 1, name: "Plain Dosa", price: 10, img:"image/plain dosa.jpg" }
         { id: 2, name: "Idly", price: 15, img: "image/idly.jpg" },
         { id: 3, name: "Masala Dosa", price: 10, img: "image/masala dosa.jpg" },
         { id: 4, name: "Chola Poori", price: 10, img: "image/chola poori.jpg" },
@@ -12,7 +12,7 @@ const restaurantMenus = {
     ],
     restaurant3: [ // Desserts
         { id: 9, name: "Chocolate Cake", price: 12, img: "image/chocolate cake.jpg" },
-        { id: 10, name: "Ice Cream Sundae", price: 8, img: "image/ice cream.jpg" },
+        { id: 10, name: "Ice Cream Sundae", price: 8, img: "image/icecream.jpg" },
         { id: 11, name: "Gulab Jamun", price: 10, img: "image/gulab jamun.jpg" },
     ],
 };
