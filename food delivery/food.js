@@ -1,130 +1,161 @@
 const restaurantMenus = {
-    restaurant1: {
-        name: 'Restaurant 1',
-        image: 'restaurant1.jpg', // Image path for Restaurant 1
-        menu: [
-            { name: 'Pizza', price: 12, image: 'pizza.jpg' },
-            { name: 'Pasta', price: 8, image: 'pasta.jpg' },
-            { name: 'Salad', price: 7, image: 'salad.jpg' }
-        ]
-    },
-    restaurant2: {
-        name: 'Restaurant 2',
-        image: 'restaurant2.jpg', // Image path for Restaurant 2
-        menu: [
-            { name: 'Burger', price: 10, image: 'burger.jpg' },
-            { name: 'Fries', price: 5, image: 'fries.jpg' },
-            { name: 'Coke', price: 2, image: 'coke.jpg' }
-        ]
-    },
-    restaurant3: {
-        name: 'Restaurant 3',
-        image: 'restaurant3.jpg', // Image path for Restaurant 3
-        menu: [
-            { name: 'Sushi', price: 15, image: 'sushi.jpg' },
-            { name: 'Ramen', price: 12, image: 'ramen.jpg' },
-            { name: 'Tempura', price: 10, image: 'tempura.jpg' }
-        ]
-    }
+    restaurant1: [
+        { id: 1, name: "Pizza", price: 10, img: "image/pizza.jpg" },
+        { id: 2, name: "Pasta", price: 15, img: "image/pasta.jpg" },
+        { id: 3, name: "Salad", price: 10, img: "image/salad.jpg" },
+    ],
+    restaurant2: [
+        { id: 4, name: "Burger", price: 20, img: "image/burger.jpg" },
+        { id: 5, name: "Fries", price: 12, img: "image/fries.jpg" },
+        { id: 6, name: "Coke", price: 10, img: "image/coke.jpg" },
+    ],
+    restaurant3: [
+        { id: 7, name: "Sushi", price: 12, img: "image/sushi.jpg" },
+        { id: 8, name: "Ramen", price: 8, img: "image/ramen.jpg" },
+    ],
 };
 
-// Elements
-const restaurantListDiv = document.getElementById('restaurant-list');
-const menuItemsDiv = document.getElementById('menu-items');
-const orderListDiv = document.getElementById('order-list');
-const placeOrderButton = document.getElementById('place-order');
-const deliveryAddressInput = document.getElementById('delivery-address');
+// Function to display menu items for the selected restaurant
+function displayMenu(restaurant) {
+    const menuContainer = document.getElementById('menu-items');
+    menuContainer.innerHTML = ''; // Clear previous items
+    const menuItems = restaurantMenus[restaurant];
 
-let currentOrder = [];
-
-// Display restaurants with images
-Object.keys(restaurantMenus).forEach(restaurantKey => {
-    const restaurant = restaurantMenus[restaurantKey];
-    
-    const restaurantDiv = document.createElement('div');
-    restaurantDiv.innerHTML = `
-        <img src="${restaurant.image}" alt="${restaurant.name}">
-        <p>${restaurant.name}</p>
-    `;
-    restaurantDiv.addEventListener('click', () => displayMenu(restaurantKey));
-    
-    restaurantListDiv.appendChild(restaurantDiv);
-});
-
-// Display menu items with images when a restaurant is selected
-function displayMenu(restaurantKey) {
-    const restaurant = restaurantMenus[restaurantKey];
-    const menu = restaurant.menu;
-
-    // Clear previous menu
-    menuItemsDiv.innerHTML = '';
-
-    // Display menu items
-    menu.forEach(item => {
-        const menuItemDiv = document.createElement('div');
-        menuItemDiv.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <span>${item.name} - $${item.price}</span>
-            <button onclick="addToOrder('${item.name}', ${item.price})">Add to Order</button>
+    menuItems.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'menu-item';
+        div.innerHTML = `
+            <img src="${item.img}" alt="${item.name}">
+            <div>
+                <h3>${item.name}</h3>
+                <p>Price: $${item.price}</p>
+                <button id="add-to-cart-${item.id}" onclick="addToOrder(${item.id})">Add to Cart</button>
+            </div>
         `;
-        menuItemsDiv.appendChild(menuItemDiv);
+        menuContainer.appendChild(div);
     });
 }
 
-// Add item to order
-function addToOrder(name, price) {
-    currentOrder.push({ name, price });
+// Initialize user info and check login
+function initUser() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userInfoDiv = document.getElementById('user-info');
+
+    if (user) {
+        userInfoDiv.innerHTML = Welcome, ${user.name} (${user.phone});
+        enableAddToCartButtons();
+        displayMenu(document.getElementById('restaurant-select').value); // Load default restaurant
+    } else {
+        window.location.href = 'login.html';
+    }
+}
+
+// Function to enable "Add to Cart" buttons
+function enableAddToCartButtons() {
+    const buttons = document.querySelectorAll('button[id^="add-to-cart-"]');
+    buttons.forEach(button => {
+        button.disabled = false;
+    });
+}
+
+// Order array
+let order = [];
+
+// Function to add item to order
+function addToOrder(id) {
+    const restaurant = document.getElementById('restaurant-select').value;
+    const item = restaurantMenus[restaurant].find(item => item.id === id);
+    order.push(item);
     updateOrderSummary();
 }
 
-// Update order summary
+// Function to update order summary
 function updateOrderSummary() {
-    orderListDiv.innerHTML = '';
-
+    const orderContainer = document.getElementById('order-summary');
+    orderContainer.innerHTML = ''; // Clear current order
     let total = 0;
-    currentOrder.forEach((item, index) => {
+
+    order.forEach(item => {
+        const div = document.createElement('div');
+        div.innerHTML = ${item.name} - $${item.price};
+        orderContainer.appendChild(div);
         total += item.price;
-        const orderItemDiv = document.createElement('div');
-        orderItemDiv.innerHTML = `
-            <span>${item.name} - $${item.price}</span>
-            <button onclick="removeFromOrder(${index})">Remove</button>
-        `;
-        orderListDiv.appendChild(orderItemDiv);
     });
 
     const totalDiv = document.createElement('div');
     totalDiv.innerHTML = <strong>Total: $${total}</strong>;
-    orderListDiv.appendChild(totalDiv);
+    orderContainer.appendChild(totalDiv);
 
-    // Enable the "Place Order" button if there's a valid delivery address and order
-    placeOrderButton.disabled = currentOrder.length === 0 || deliveryAddressInput.value.trim() === '';
+    // Enable the place order button if there are items in the order
+    document.getElementById('place-order').disabled = order.length === 0;
 }
 
-// Remove item from order
-function removeFromOrder(index) {
-    currentOrder.splice(index, 1);
-    updateOrderSummary();
-}
+// Function to handle order placement
+document.getElementById('place-order').onclick = function() {
+    const address = document.getElementById('delivery-address').value;
+    const discountCode = document.getElementById('discount-code').value;
+    
+    if (order.length > 0) {
+        if (address) {
+            let total = order.reduce((sum, item) => sum + item.price, 0);
+            if (discountCode === "DISCOUNT10") {
+                total *= 0.9; // Apply a 10% discount
+                alert('Discount applied: 10% off!');
+            }
 
-// Enable "Place Order" button when address is entered
-deliveryAddressInput.addEventListener('input', () => {
-    placeOrderButton.disabled = currentOrder.length === 0 || deliveryAddressInput.value.trim() === '';
+            alert(Order placed successfully!\nDelivery Address: ${address}\nTotal Amount: $${total.toFixed(2)});
+            order = []; // Reset order
+            document.getElementById('delivery-address').value = ''; // Clear address field
+            document.getElementById('discount-code').value = ''; // Clear discount field
+            updateOrderSummary();
+
+            // Show the feedback section
+            document.getElementById('feedback-section').style.display = 'block';
+        } else {
+            alert('Please enter a delivery address.');
+        }
+    } else {
+        alert('Your order is empty!');
+    }
+};
+
+// Handle star rating
+const stars = document.querySelectorAll('.star');
+let selectedRating = 0;
+
+stars.forEach(star => {
+    star.addEventListener('click', function() {
+        selectedRating = this.getAttribute('data-value');
+        stars.forEach(s => {
+            s.style.color = s.getAttribute('data-value') <= selectedRating ? '#ffcc00' : '#fff';
+        });
+    });
 });
 
-// Place the order
-placeOrderButton.addEventListener('click', () => {
-    if (currentOrder.length === 0 || deliveryAddressInput.value.trim() === '') {
-        alert('Please complete your order and provide a delivery address.');
+// Function to submit feedback
+document.getElementById('submit-feedback').onclick = function() {
+    const feedback = document.getElementById('order-feedback').value;
+    const feedbackList = document.getElementById('feedback-list');
+
+    if (selectedRating === "0") {
+        alert('Please select a rating.');
         return;
     }
 
-    alert(Your order has been placed! Total: $${currentOrder.reduce((total, item) => total + item.price, 0)}\nDelivery to: ${deliveryAddressInput.value});
-    
-    // Reset order after placing
-    currentOrder = [];
-    deliveryAddressInput.value = '';
-    updateOrderSummary();
+    const feedbackItem = document.createElement('div');
+    feedbackItem.innerHTML = <strong>Rating: ${selectedRating}</strong> - ${feedback};
+    feedbackList.appendChild(feedbackItem);
+
+    // Clear input fields
+    selectedRating = 0;
+    stars.forEach(s => s.style.color = '#fff'); // Reset star color
+    document.getElementById('order-feedback').value = '';
+};
+
+// Event listener for restaurant selection
+document.getElementById('restaurant-select').addEventListener('change', function() {
+    displayMenu(this.value);
 });
 
-// Load default restaurant menu on page load
-displayMenu('restaurant1');
+// Initial call to check user and load menu
+initUser();
