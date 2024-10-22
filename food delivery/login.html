@@ -1,48 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Food Delivery</title>
     <link rel="stylesheet" href="food.css">
 </head>
-
 <body>
-    <div class="login-container">
+    <header>
         <h1>Login</h1>
-        <form id="login-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+    </header>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    <main>
+        <form id="login-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" required>
 
             <button type="submit">Login</button>
-            <p id="error-message" style="color: red;"></p>
         </form>
-    </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Food Delivery Website</p>
+    </footer>
 
     <script>
-        const validUsername = "user";
-const validPassword = "password";
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
 
-document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form from submitting in the traditional way
-    
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const errorMessage = document.getElementById('error-message');
-
-    // Basic username and password validation
-    if (username === validUsername && password === validPassword) {
-        // Redirect to the food delivery page after successful login
-        window.location.href = "food.html";
-    } else {
-        errorMessage.textContent = "Invalid username or password";
-    }
-});
+            // Save user info in local storage
+            localStorage.setItem('user', JSON.stringify({ name, phone }));
+            // Redirect to the main page
+            window.location.href = 'food.html';
+        });
     </script>
 </body>
-
 </html>
