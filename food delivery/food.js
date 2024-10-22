@@ -1,29 +1,26 @@
 const restaurantMenus = {
     restaurant1: {
         name: 'Restaurant 1',
-        image: 'restaurant1.jpg',
         menu: [
-            { name: 'Pizza', price: 12, image: 'pizza.jpg' },
-            { name: 'Pasta', price: 8, image: 'pasta.jpg' },
-            { name: 'Salad', price: 7, image: 'salad.jpg' }
+            { name: 'Pizza', price: 12, image: 'images/pizza.jpg' },
+            { name: 'Pasta', price: 8, image: 'images/pasta.jpg' },
+            { name: 'Salad', price: 7, image: 'images/salad.jpg' }
         ]
     },
     restaurant2: {
         name: 'Restaurant 2',
-        image: 'restaurant2.jpg',
         menu: [
-            { name: 'Burger', price: 10, image: 'burger.jpg' },
-            { name: 'Fries', price: 5, image: 'fries.jpg' },
-            { name: 'Coke', price: 2, image: 'coke.jpg' }
+            { name: 'Burger', price: 10, image: 'images/burger.jpg' },
+            { name: 'Fries', price: 5, image: 'images/fries.jpg' },
+            { name: 'Coke', price: 2, image: 'images/coke.jpg' }
         ]
     },
     restaurant3: {
         name: 'Restaurant 3',
-        image: 'restaurant3.jpg',
         menu: [
-            { name: 'Sushi', price: 15, image: 'sushi.jpg' },
-            { name: 'Ramen', price: 12, image: 'ramen.jpg' },
-            { name: 'Tempura', price: 10, image: 'tempura.jpg' }
+            { name: 'Sushi', price: 15, image: 'images/sushi.jpg' },
+            { name: 'Ramen', price: 12, image: 'images/ramen.jpg' },
+            { name: 'Tempura', price: 10, image: 'images/tempura.jpg' }
         ]
     }
 };
@@ -40,15 +37,12 @@ let currentOrder = [];
 Object.keys(restaurantMenus).forEach(restaurantKey => {
     const restaurant = restaurantMenus[restaurantKey];
     const restaurantDiv = document.createElement('div');
-    restaurantDiv.innerHTML = `
-        <img src="${restaurant.image}" alt="${restaurant.name}" style="width:100px;height:auto;">
-        <p>${restaurant.name}</p>
-    `;
+    restaurantDiv.innerHTML = `<p>${restaurant.name}</p>`;
     restaurantDiv.addEventListener('click', () => displayMenu(restaurantKey));
     restaurantListDiv.appendChild(restaurantDiv);
 });
 
-// Display menu items
+// Display menu items with images
 function displayMenu(restaurantKey) {
     const menu = restaurantMenus[restaurantKey].menu;
     menuItemsDiv.innerHTML = '';
