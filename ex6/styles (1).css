@@ -1,0 +1,212 @@
+ /* Basic Reset */
+ * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #020202;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #ffffff;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgb(235, 235, 235);
+    width: 90%;
+    max-width: 350px; /* Reduced width */
+    padding: 20px; /* Reduced padding */
+    transition: transform 0.3s;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+h2 {
+    color: #072e58;
+    margin-bottom: 15px; /* Reduced margin */
+    font-size: 24px; /* Reduced font size */
+    text-align: center;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #495057;
+    font-size: 14px; /* Reduced font size */
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select,
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px 40px; /* Padding adjusted for icon */
+    border: 2px solid #072e58;
+    border-radius: 8px;
+    font-size: 14px; /* Reduced font size */
+    transition: border-color 0.3s;
+    background-color: #f8f9fa;
+    resize: none; /* Disable resizing for textarea */
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+select:focus,
+input[type="number"]:focus,
+textarea:focus {
+    border-color: #072e58;
+    outline: none;
+    background-color: #ffffff;
+}
+
+.input-container i,
+.textarea-container i {
+    position: absolute;
+    left: 10px; /* Adjusted for better alignment */
+    top: 50%;
+    transform: translateY(15%); /* Lowered icon positioning */
+    color: #072e58;
+    font-size: 18px; /* Reduced icon size */
+}
+
+.number-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.number-input {
+    flex-grow: 1;
+    padding-right: 10px; /* Padding for the number input */
+}
+
+.number-button {
+    background-color: #072e58;
+    color: white;
+    border: none;
+    padding: 5px 10px; /* Adjusted padding */
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    font-size: 14px; /* Reduced font size */
+}
+
+.number-button:hover {
+    background-color: #072e58;
+}
+
+button {
+    background-color: #072e58;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px; /* Reduced font size */
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #072e58;
+}
+
+h3 {
+    margin: 20px 0 10px;
+    color: #343a40;
+    font-size: 20px; /* Reduced font size */
+    text-align: center;
+}
+
+.available-leaves {
+    background-color: #e9ecef;
+    border-radius: 8px;
+    padding: 10px; /* Reduced padding */
+    margin: 15px 0; /* Reduced margin */
+    text-align: left;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.available-leaves p {
+    margin: 5px 0;
+    color: #495057;
+    font-size: 14px; /* Reduced font size */
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 20px; /* Reduced padding */
+    border-radius: 10px;
+    width: 90%;
+    max-width: 300px; /* Reduced width */
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+    margin: 0;
+    font-size: 20px; /* Reduced font size */
+    color: #072e58;
+}
+
+.modal-content p {
+    margin: 10px 0;
+    color: #495057;
+    font-size: 14px; /* Reduced font size */
+}
+
+.close-btn {
+    background-color: #072e58;
+    color: white;
+    padding: 8px 15px; /* Adjusted padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+    background-color: #072e58;
+}
+
+/* Text area styling */
+.textarea-container {
+    position: relative;
+    margin-bottom: 15px; /* Reduced margin */
+}
+
+textarea {
+    padding: 10px 40px; /* Padding adjusted for icon */
+}
