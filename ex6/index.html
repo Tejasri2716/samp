@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
+</head>
+<body>
 
+<div class="container">
+    <h2>Leave Management</h2>
+    <div>
+        <div class="input-container">
+            <i class="fas fa-user"></i>
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" />
+        </div>
+
+        <div class="input-container">
+            <i class="fas fa-phone"></i>
+            <label for="contact">Contact (Phone or Email):</label>
+            <input type="text" id="contact" placeholder="Enter your contact information" />
+        </div>
+
+        <div class="input-container">
+            <i class="fas fa-calendar-alt"></i>
+            <label for="leaveType">Leave Type:</label>
+            <select id="leaveType">
+                <option value="casual">Casual Leave</option>
+                <option value="medical">Medical Leave</option>
+                <option value="earned">Earned Leave</option>
+                <option value="maternity">Maternity Leave</option>
+            </select>
+        </div>
+
+        <div class="input-container number-input-container">
+            <label for="daysRequested">Number of Days:</label>
+            <input type="number" id="daysRequested" min="1" placeholder="Days" class="number-input" />
+        </div>
+
+        <div class="textarea-container">
+            <i class="fas fa-comment"></i>
+            <label for="reason">Leave Reason:</label>
+            <textarea id="reason" rows="3" placeholder="Enter reason for leave"></textarea>
+        </div>
+
+        <button onclick="applyLeave()">Apply Leave</button>
+
+        <h3>Available Leaves:</h3>
+        <div class="available-leaves">
+            <p>Casual: <span id="casualLeaveDays">10</span> days</p>
+            <p>Medical: <span id="medicalLeaveDays">15</span> days</p>
+            <p>Earned: <span id="earnedLeaveDays">12</span> days</p>
+            <p>Maternity: <span id="maternityLeaveDays">90</span> days</p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal structure for confirmation message -->
+<div class="modal" id="confirmationModal">
+    <div class="modal-content">
+        <h3>Confirmation</h3>
+        <p id="confirmationMessage"></p>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
